@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sapen Kampung Inggris Hub</title>
+  <title>Sapen Kampung Inggris - Digital Hub</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <style>
     :root {
       --primary-color: #0d6efd;
-      --accent-color: #198754;
       --bg-light: #f8f9fa;
     }
     body {
@@ -19,7 +18,7 @@
     .hero-banner {
       background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
       color: white;
-      padding: 40px 20px;
+      padding: 35px 20px;
       border-radius: 0 0 25px 25px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
@@ -28,24 +27,24 @@
       border-radius: 16px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       background: #ffffff;
-      overflow: hidden;
+      height: 100%;
     }
     .card-modul:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
     .badge-level {
       font-size: 0.75rem;
-      padding: 6px 12px;
+      padding: 5px 10px;
       border-radius: 20px;
     }
-    .btn-baca {
+    .btn-action {
       border-radius: 10px;
       font-weight: 600;
     }
-    /* Modal Viewer Layar Penuh untuk HP */
     .modal-fullscreen .modal-body {
       padding: 0;
+      background: #111;
     }
     iframe {
       width: 100%;
@@ -59,63 +58,151 @@
   <!-- HERO HEADER -->
   <div class="hero-banner text-center mb-4">
     <div class="container">
-      <span class="badge bg-warning text-dark mb-2 px-3 py-2 rounded-pill"><i class="bi bi-star-fill me-1"></i> Sapen Kampung Inggris</span>
+      <span class="badge bg-warning text-dark mb-2 px-3 py-2 rounded-pill">
+        <i class="bi bi-star-fill me-1"></i> Sapen Kampung Inggris
+      </span>
       <h2 class="fw-bold mb-2">Digital Learning Hub</h2>
-      <p class="small opacity-75 mb-3">Akses materi pembelajaran bahasa Inggris kapan saja dan di mana saja langsung dari HP Anda.</p>
+      <p class="small opacity-75 mb-3">Akses modul PDF, materi PPT, dan materi pembelajaran langsung dari HP Anda.</p>
       
-      <!-- FITUR PENCARIAN -->
+      <!-- PENCARIAN -->
       <div class="input-group shadow-sm my-2 mx-auto" style="max-width: 450px;">
         <span class="input-group-text bg-white border-0"><i class="bi bi-search text-muted"></i></span>
-        <input type="text" id="searchInput" class="form-control border-0 py-2" placeholder="Cari modul (contoh: UMKM, Tour Guide)..." onkeyup="filterModul()">
+        <input type="text" id="searchInput" class="form-control border-0 py-2" placeholder="Cari materi (contoh: Time, Family, UMKM)..." onkeyup="filterModul()">
       </div>
     </div>
   </div>
 
   <div class="container mb-5">
-    <!-- KATEGORI FILTER -->
+    <!-- FILTER KATEGORI -->
     <div class="d-flex gap-2 overflow-auto pb-2 mb-3 px-1" style="white-space: nowrap;">
-      <button class="btn btn-primary btn-sm rounded-pill px-3 active" onclick="filterCategory('all', this)">Semua Modul</button>
-      <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="filterCategory('umkm', this)">English for UMKM</button>
-      <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="filterCategory('tour', this)">Tour Guide</button>
-      <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="filterCategory('general', this)">Umum & Anak</button>
+      <button class="btn btn-primary btn-sm rounded-pill px-3 active" onclick="filterCategory('all', this)">Semua Materi</button>
+      <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="filterCategory('umum', this)">Sapen Umum (PDF)</button>
+      <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="filterCategory('umkm', this)">Basic UMKM (PDF)</button>
+      <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="filterCategory('meeting', this)">Meeting PPTX</button>
     </div>
 
-    <!-- DAFTAR KARTU MODUL -->
+    <!-- DAFTAR MATERI AKSI -->
     <div class="row g-3" id="modulList">
       
-      <!-- MODUL 1: UMKM -->
-      <div class="col-12 col-md-6 modul-item" data-category="umkm" data-title="english for umkm introducing yourself">
+      <!-- MATERI 1: BASIC SAPEN UMUM MODUL 1-5 -->
+      <div class="col-12 col-md-6 modul-item" data-category="umum" data-title="basic sapen umum modul 1 5 pdf">
         <div class="card card-modul shadow-sm p-3">
           <div class="d-flex align-items-center gap-3">
             <div class="bg-primary bg-opacity-10 p-3 rounded-3 text-primary">
-              <i class="bi bi-shop fs-2"></i>
+              <i class="bi bi-file-earmark-pdf-fill fs-2"></i>
             </div>
             <div class="flex-grow-1">
-              <span class="badge bg-success badge-level mb-1">Level A1 - Basic</span>
-              <h6 class="fw-bold mb-1">English for UMKM: Introducing Yourself</h6>
-              <p class="text-muted small mb-2">Panduan mengenalkan diri & usaha lokal Sapen ke pelanggan/wisatawan.</p>
-              <button class="btn btn-primary btn-sm btn-baca w-100" onclick="openPdfModal('English for UMKM', 'https://drive.google.com/file/d/1m9VPGZzC1n4Vz1LoT7pQDVwTHnNSIKRU/preview')">
-                <i class="bi bi-book me-1"></i> Baca Modul Lengkap
+              <span class="badge bg-primary badge-level mb-1">PDF Book</span>
+              <h6 class="fw-bold mb-1">Basic Sapen Umum Modul 1-5</h6>
+              <p class="text-muted small mb-2">Panduan materi dasar bahasa Inggris umum untuk warga Sapen.</p>
+              <button class="btn btn-primary btn-sm btn-action w-100" onclick="openDriveModal('Basic Sapen Umum Modul 1-5', 'https://drive.google.com/file/d/1VwiYGQwasoOo1FnyqhW66pVbjkOmt1-q/preview')">
+                <i class="bi bi-book-half me-1"></i> Baca Modul PDF
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- MODUL 2: TOUR GUIDE -->
-      <div class="col-12 col-md-6 modul-item" data-category="tour" data-title="english conversation tour guides welcoming">
+      <!-- MATERI 2: BASIC UMKM MODUL 1 DAN 2 -->
+      <div class="col-12 col-md-6 modul-item" data-category="umkm" data-title="basic umkm modul 1 dan 2 pdf">
+        <div class="card card-modul shadow-sm p-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-success bg-opacity-10 p-3 rounded-3 text-success">
+              <i class="bi bi-shop fs-2"></i>
+            </div>
+            <div class="flex-grow-1">
+              <span class="badge bg-success badge-level mb-1">UMKM Focus</span>
+              <h6 class="fw-bold mb-1">Basic UMKM Modul 1 & 2</h6>
+              <p class="text-muted small mb-2">Materi bahasa Inggris praktis untuk pelaku usaha UMKM lokal.</p>
+              <button class="btn btn-success btn-sm btn-action w-100" onclick="openDriveModal('Basic UMKM Modul 1 & 2', 'https://drive.google.com/file/d/137PithNtMOEr5lsKkIivY7k6HPfnVdJJ/preview')">
+                <i class="bi bi-book-half me-1"></i> Baca Modul UMKM
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATERI 3: 1st MEETING - TELLING THE TIME -->
+      <div class="col-12 col-md-6 modul-item" data-category="meeting" data-title="1st meeting telling the time ppt pptx">
         <div class="card card-modul shadow-sm p-3">
           <div class="d-flex align-items-center gap-3">
             <div class="bg-warning bg-opacity-10 p-3 rounded-3 text-warning">
-              <i class="bi bi-compass fs-2"></i>
+              <i class="bi bi-clock-history fs-2"></i>
             </div>
             <div class="flex-grow-1">
-              <span class="badge bg-primary badge-level mb-1">Level A2 - Tour Guide</span>
-              <h6 class="fw-bold mb-1">Welcoming & Introducing Yourself</h6>
-              <p class="text-muted small mb-2">Percakapan menyambut wisatawan di Galeri Wayang Uwuh & RTHP Sapen.</p>
-              <button class="btn btn-warning text-dark btn-sm btn-baca w-100" onclick="openPdfModal('Tour Guide Module', 'https://drive.google.com/file/d/1m9VPGZzC1n4Vz1LoT7pQDVwTHnNSIKRU/preview')">
-                <i class="bi bi-book me-1"></i> Baca Modul Lengkap
+              <span class="badge bg-warning text-dark badge-level mb-1">1st Meeting</span>
+              <h6 class="fw-bold mb-1">Telling The Time (PPT)</h6>
+              <p class="text-muted small mb-2">Slide presentasi belajar menyebutkan waktu dan jam.</p>
+              <button class="btn btn-warning text-dark btn-sm btn-action w-100" onclick="openDriveModal('1st Meeting - Telling The Time', 'https://drive.google.com/file/d/1pdtRw2ivKOe6aW7IScq2YvOBfbP1g6Rk/preview')">
+                <i class="bi bi-play-circle me-1"></i> Buka Slide Presentation
               </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATERI 4: 2nd MEETING - FAMILY -->
+      <div class="col-12 col-md-6 modul-item" data-category="meeting" data-title="2nd meeting family ppt pptx canva">
+        <div class="card card-modul shadow-sm p-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-info bg-opacity-10 p-3 rounded-3 text-info">
+              <i class="bi bi-people-fill fs-2"></i>
+            </div>
+            <div class="flex-grow-1">
+              <span class="badge bg-info text-dark badge-level mb-1">2nd Meeting</span>
+              <h6 class="fw-bold mb-1">Family Topic (PPT & Canva)</h6>
+              <p class="text-muted small mb-2">Materi kosa kata & percakapan seputar anggota keluarga.</p>
+              <div class="d-flex gap-2">
+                <button class="btn btn-info text-dark btn-sm btn-action flex-fill" onclick="openDriveModal('2nd Meeting - Family', 'https://drive.google.com/file/d/1CGSAGYZ_db64__9piNpYx2tR9rNKtKrc/preview')">
+                  <i class="bi bi-file-earmark-slides me-1"></i> Slide
+                </button>
+                <a href="https://canva.link/4m24755boatgkmo" target="_blank" class="btn btn-outline-info text-dark btn-sm btn-action">
+                  <i class="bi bi-palette me-1"></i> Canva
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATERI 5: 3rd MEETING - DIRECTIONS -->
+      <div class="col-12 col-md-6 modul-item" data-category="meeting" data-title="3rd meeting directions ppt pptx canva">
+        <div class="card card-modul shadow-sm p-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-danger bg-opacity-10 p-3 rounded-3 text-danger">
+              <i class="bi bi-signpost-split-fill fs-2"></i>
+            </div>
+            <div class="flex-grow-1">
+              <span class="badge bg-danger badge-level mb-1">3rd Meeting</span>
+              <h6 class="fw-bold mb-1">Asking & Giving Directions</h6>
+              <p class="text-muted small mb-2">Percakapan menanyakan & menunjukkan arah jalan/lokasi.</p>
+              <div class="d-flex gap-2">
+                <button class="btn btn-danger btn-sm btn-action flex-fill" onclick="openDriveModal('3rd Meeting - Directions', 'https://drive.google.com/file/d/11-UWZuZczD9aumksgA6qyMxyQ4WRRWqU/preview')">
+                  <i class="bi bi-file-earmark-slides me-1"></i> Slide
+                </button>
+                <a href="https://canva.link/cv6yj7bo8ywi0kf" target="_blank" class="btn btn-outline-danger btn-sm btn-action">
+                  <i class="bi bi-palette me-1"></i> Canva
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AKSES FOLDER GOOGLE DRIVE UTAMA -->
+      <div class="col-12 col-md-6 modul-item" data-category="all" data-title="folder google drive utama">
+        <div class="card card-modul shadow-sm p-3 border-secondary border-opacity-25">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-secondary bg-opacity-10 p-3 rounded-3 text-secondary">
+              <i class="bi bi-folder-symlink-fill fs-2"></i>
+            </div>
+            <div class="flex-grow-1">
+              <span class="badge bg-secondary badge-level mb-1">Google Drive</span>
+              <h6 class="fw-bold mb-1">Folder Drive Master</h6>
+              <p class="text-muted small mb-2">Buka langsung seluruh file penyimpanan asli di Google Drive.</p>
+              <a href="https://drive.google.com/drive/folders/1vZ1Al5QoZ7QW2xV03ZEe0Ni3EtX2dhKA" target="_blank" class="btn btn-outline-secondary btn-sm btn-action w-100">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Buka Google Drive
+              </a>
             </div>
           </div>
         </div>
@@ -124,16 +211,16 @@
     </div>
   </div>
 
-  <!-- MODAL VIEWER PDF (Membuka Layar Penuh di HP Tanpa Download File) -->
-  <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
+  <!-- MODAL VIEWER PDF & PRESENTASI FULLSCREEN -->
+  <div class="modal fade" id="driveModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
       <div class="modal-content">
         <div class="modal-header bg-dark text-white py-2">
-          <h6 class="modal-title id="modalTitle">Judul Modul</h6>
+          <h6 class="modal-title" id="modalTitle">Buka Materi</h6>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <iframe id="pdfFrame" src="" allow="autoplay"></iframe>
+          <iframe id="driveFrame" src="" allow="autoplay"></iframe>
         </div>
       </div>
     </div>
@@ -141,15 +228,13 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Membuka Modul di Modal Layar Penuh
-    function openPdfModal(title, url) {
+    function openDriveModal(title, url) {
       document.getElementById('modalTitle').innerText = title;
-      document.getElementById('pdfFrame').src = url;
-      var myModal = new bootstrap.Modal(document.getElementById('pdfModal'));
+      document.getElementById('driveFrame').src = url;
+      var myModal = new bootstrap.Modal(document.getElementById('driveModal'));
       myModal.show();
     }
 
-    // Filter Kategori
     function filterCategory(cat, btn) {
       document.querySelectorAll('.d-flex .btn').forEach(b => b.classList.replace('btn-primary', 'btn-outline-primary'));
       btn.classList.replace('btn-outline-primary', 'btn-primary');
@@ -164,7 +249,6 @@
       });
     }
 
-    // Filter Pencarian
     function filterModul() {
       let input = document.getElementById('searchInput').value.toLowerCase();
       let items = document.querySelectorAll('.modul-item');
